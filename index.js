@@ -11,11 +11,12 @@ function getTasks() {
     tasks.data.forEach(task => {
       const taskMarkup = `
         <div data-id=${task.id}>
-        <span class="material-icons md-48">arrow_forward</span>  
-        <span style="font-family:Cutive Mono;font-size: xxx-large;">${task.attributes.size} </span> <span style="font-family:Cutive Mono;font-size: xx-large;"> ${task.attributes.name}</span>
-          <span>(in ${task.attributes.project.title})</span><span class="material-icons md-48">more_horiz</span>
+        <span class="material-icons md-48">arrow_forward</span><span class="material-icons md-48">check_box_outline_blank</span><span class="material-icons md-48">check_box</span>  
+        <span style="font-family:Cutive Mono;font-size: 40px;">${task.attributes.size} </span> <span style="font-family:Cutive Mono;font-size: 40px;"> ${task.attributes.name}</span>
+          <span style="font-size: 40px;">(in ${task.attributes.project.title})</span><span class="material-icons md-48">more_horiz</span>
           <span class="material-icons md-48">redo</span>
-          <span class="material-icons md-48">more_horiz</span>
+          <span class="material-icons md-48">arrow_upward</span>
+          <span class="material-icons md-48">arrow_downward</span>
         </div>`;
       document.querySelector('#task-container').innerHTML += taskMarkup
     })
