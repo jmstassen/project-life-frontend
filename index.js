@@ -2,6 +2,10 @@ const endPoint = "http://localhost:3000/api/v1/tasks"
 
 document.addEventListener('DOMContentLoaded', () => {
   getTasks()
+
+  const createTaskForm = document.querySelector("#create-task-form")
+
+  createTaskForm.addEventListener("submit", (e) => createFormHandler(e))
 })
 
 function getTasks() {
@@ -21,4 +25,9 @@ function getTasks() {
       document.querySelector('#task-container').innerHTML += taskMarkup
     })
   })
+}
+
+function createFormHandler(e) {
+  e.preventDefault()
+  console.log(e);
 }
