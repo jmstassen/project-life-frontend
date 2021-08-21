@@ -30,19 +30,20 @@ function getTasks() {
 function createFormHandler(e) {
   e.preventDefault()
   const nameInput = document.querySelector('#input-name').value
-  postFetch(nameInput)
+  const date = new Date().toISOString().slice(0, 10)
+  const status = "active"
+  const projectId = 1
+  const size = "0"
+  postFetch(nameInput, projectId, status, date, size)
 }
 
-function postFetch(name) {
+function postFetch(name, project_id, status, date, size) {
+
+  const bodyData = {name, project_id, status, date, size}
   fetch(endPoint, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      name: name,
-      project_id: 1,
-      status: "active",
-      date: new Date().toISOString().slice(0, 10)
-    })
+    body: JSON.stringify(bodyData)
   })
   .then(response => response.json())
   .then(task => {
