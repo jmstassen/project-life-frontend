@@ -2,9 +2,7 @@ const endPoint = "http://localhost:3000/api/v1/tasks"
 
 document.addEventListener('DOMContentLoaded', () => {
   getTasks()
-
   const createTaskForm = document.querySelector("#create-task-form")
-
   createTaskForm.addEventListener("submit", (e) => createFormHandler(e))
 })
 
@@ -22,7 +20,7 @@ function getTasks() {
           <span class="material-icons md-48">arrow_upward</span>
           <span class="material-icons md-48">arrow_downward</span>
         </div>`;
-      document.querySelector('#task-container').innerHTML += taskMarkup
+      document.querySelector('#task-container').innerHTML += taskMarkup;
     })
   })
 }
@@ -38,17 +36,29 @@ function createFormHandler(e) {
 }
 
 function postFetch(name, project_id, status, date, size) {
-
-  const bodyData = {name, project_id, status, date, size}
   fetch(endPoint, {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(bodyData)
+    headers: {"Content-Type": "application/json", "Accept": "application/json"},
+    body: JSON.stringify({
+      name: name,
+      project_id: project_id,
+      status: status,
+      date: date,
+      size: size
+    })
   })
   .then(response => response.json())
   .then(task => {
     const taskData = task.data
-
+    const taskMarkup = `
+    <div data-id=${taskData.id} class="wrapper">
+    <span class="material-icons md-48">arrow_forward</span><span class="material-icons md-48">check_box_outline_blank</span><span class="material-icons md-48">check_box</span>  
+    <span style="font-family:Cutive Mono;font-size: 40px;">${taskData.attributes.size} </span> <span style="font-family:Cutive Mono;font-size: 40px;"> ${taskData.attributes.name}</span>
+      <span class="material-icons md-48">more_horiz</span>
+      <span class="material-icons md-48">redo</span>
+      <span class="material-icons md-48">arrow_upward</span>
+      <span class="material-icons md-48">arrow_downward</span>
+    </div>`;
+    document.querySelector('#task-container').innerHTML += taskMarkup;
   })
-
 }
