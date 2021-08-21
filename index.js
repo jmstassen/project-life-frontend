@@ -34,5 +34,19 @@ function createFormHandler(e) {
 }
 
 function postFetch(name) {
-  console.log(name)
+  fetch(endPoint, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      name: name,
+      project_id: 1,
+      status: "active",
+      date: new Date().toISOString().slice(0, 10)
+    })
+  })
+  .then(response => response.json())
+  .then(task => {
+    console.log(task);
+  })
+
 }
