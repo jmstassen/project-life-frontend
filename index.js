@@ -47,7 +47,8 @@ function postFetch(name, project_id, status, date, size) {
   })
   .then(response => response.json())
   .then(task => {
-    console.log(task);
+    const taskData = task.data
+
   })
 
 }
