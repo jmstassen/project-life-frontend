@@ -29,5 +29,10 @@ function getTasks() {
 
 function createFormHandler(e) {
   e.preventDefault()
-  console.log(e);
+  const nameInput = document.querySelector('#input-name').value
+  postFetch(nameInput)
+}
+
+function postFetch(name) {
+  console.log(name)
 }
