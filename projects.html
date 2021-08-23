@@ -14,18 +14,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="projects-container">
-      <div id="project-card">
-        <div id="project-name"></div>
-        <div id="tasks-container">
-          <div id="task-line"></div>
-          <div id="task-line"></div>
-          <div id="form-container"></div>
-        </div> 
+    <div class="projects-container">
+      <div class="project-card">
+        <div class="project-header">
+          <h2>Project Name</h2>
+        </div>
+        <div id="task-container">
 
+        </div>
+        <div id="form-container">
+          <form id="create-task-form">
+            <input id='input-name' type="text" name="name" value="" class="input-text"> 
+            <input id='create-button' type="submit" name="submit" value="create task" class="submit">
+          </form>
+        </div>
       </div>
-      <div id="project-card">
-
+      <div class="project-card">
+        <h2>Project two</h2>
+        <div id="form-container">
+          <form id="create-task-form">
+            <input id='input-name' type="text" name="name" value="" class="input-text"> 
+            <input id='create-button' type="submit" name="submit" value="create task" class="submit">
+          </form>
+        </div>
+      </div>
+      <div class="project-card">
+        <h2>Project three</h2>
 
       </div>
     </div>

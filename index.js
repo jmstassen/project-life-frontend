@@ -12,13 +12,11 @@ function getTasks() {
   .then(tasks => {
     tasks.data.forEach(task => {
       const taskMarkup = `
-        <div data-id=${task.id} class="wrapper">
-        <span class="material-icons md-48">arrow_forward</span><span class="material-icons md-48">check_box_outline_blank</span><span class="material-icons md-48">check_box</span>  
-        <span style="font-family:Cutive Mono;font-size: 40px;">${task.attributes.size} </span> <span style="font-family:Cutive Mono;font-size: 40px;"> ${task.attributes.name}</span>
-          <span class="material-icons md-48">more_horiz</span>
-          <span class="material-icons md-48">redo</span>
-          <span class="material-icons md-48">arrow_upward</span>
-          <span class="material-icons md-48">arrow_downward</span>
+        <div data-id=${task.id} style="vertical-align:middle;" >
+          <span style="vertical-align:middle;" class="material-icons">arrow_forward</span><span style="vertical-align:middle;" class="material-icons">check_box_outline_blank</span>
+          <span style="font-family:Cutive Mono;font-size: 24px; text-align:right; vertical-align:middle;">${task.attributes.size}</span> <span style="vertical-align:top;" class="task-text"> ${task.attributes.name}</span>
+          <span style="vertical-align:middle;" class="material-icons">more_horiz</span>
+          <span style="vertical-align:middle;" class="material-icons">redo</span>
         </div>`;
       document.querySelector('#task-container').innerHTML += taskMarkup;
     })
