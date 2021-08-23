@@ -12,11 +12,20 @@ function getTasks() {
   .then(tasks => {
     tasks.data.forEach(task => {
       const taskMarkup = `
-        <div data-id=${task.id} style="vertical-align:middle;" >
-          <span style="vertical-align:middle;" class="material-icons">arrow_forward</span><span style="vertical-align:middle;" class="material-icons">check_box_outline_blank</span>
-          <span style="font-family:Cutive Mono;font-size: 24px; text-align:right; vertical-align:middle;">${task.attributes.size}</span> <span style="vertical-align:top;" class="task-text"> ${task.attributes.name}</span>
-          <span style="vertical-align:middle;" class="material-icons">more_horiz</span>
-          <span style="vertical-align:middle;" class="material-icons">redo</span>
+        <div data-id=${task.id} class="task-line">  
+          <div class="task-left-controls">
+            <span class="material-icons">arrow_forward</span>
+            <span class="material-icons">check_box_outline_blank</span>
+            <span class="task-size">${task.attributes.size}</span>
+          </div>
+          <div class="task-name-column">
+            <span class="task-text"> ${task.attributes.name}</span>
+          </div>
+          <div class="task-right-controls">
+            <span class="material-icons">more_horiz</span>
+            <span class="material-icons">redo</span>
+            <span class="material-icons">delete_forever</span>
+          </div>
         </div>`;
       document.querySelector('#task-container').innerHTML += taskMarkup;
     })
@@ -49,13 +58,12 @@ function postFetch(name, project_id, status, date, size) {
   .then(task => {
     const taskData = task.data
     const taskMarkup = `
-    <div data-id=${taskData.id} class="wrapper">
-    <span class="material-icons md-48">arrow_forward</span><span class="material-icons md-48">check_box_outline_blank</span><span class="material-icons md-48">check_box</span>  
-    <span style="font-family:Cutive Mono;font-size: 40px;">${taskData.attributes.size} </span> <span style="font-family:Cutive Mono;font-size: 40px;"> ${taskData.attributes.name}</span>
-      <span class="material-icons md-48">more_horiz</span>
-      <span class="material-icons md-48">redo</span>
-      <span class="material-icons md-48">arrow_upward</span>
-      <span class="material-icons md-48">arrow_downward</span>
+      <div data-id=${taskData.id}>
+        <span class="material-icons">arrow_forward</span><span class="material-icons">check_box_outline_blank</span>
+        <span style="font-family:Cutive Mono;font-size: 30px;">${taskData.attributes.size} </span> <span class="task-text"> ${taskData.attributes.name}</span>
+        <span class="material-icons">more_horiz</span>
+        <span class="material-icons">redo</span>
+        <span class="material-icons">delete_forever</span>
     </div>`;
     document.querySelector('#task-container').innerHTML += taskMarkup;
   })

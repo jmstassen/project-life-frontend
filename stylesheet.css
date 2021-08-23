@@ -21,11 +21,37 @@
       line-height: 18px;
     }
   
-    .projects-container{
+    .projects-container {
       border: solid black 0px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       column-gap: 5px;
+    }
+
+    .task-line {
+      width: 100%;
+      grid-template-columns: 72px 1fr 72px;
+    }
+
+    .task-line:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .task-name-column {
+      float: left;
+    }
+
+    .task-left-controls {
+      column-width: 72px;
+      float: left;
+
+    }
+      
+    .task-right-controls {
+      column-width: 72px;
+      float: left;
     }
 
     .lyrics-column input {
@@ -178,14 +204,14 @@
       text-align: center;
       text-decoration: underline;
     }
-  
+
     .task-text {
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 20px;
+      font-size: 24px;
       font-style: normal;
       font-variant: normal;
       font-weight: normal;
-      line-height: 28px;
+      line-height: 24px;
     }
 
     h3 {
