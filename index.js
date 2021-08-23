@@ -13,15 +13,15 @@ function getTasks() {
     tasks.data.forEach(task => {
       const taskMarkup = `
         <div data-id=${task.id} class="task-line">  
-          <div class="task-left-controls">
-            <span class="material-icons">arrow_forward</span>
-            <span class="material-icons">check_box_outline_blank</span>
-            <span class="task-size">${task.attributes.size}</span>
+          <div class="left-column">  
+            <span class="material-icons" class="column-one">arrow_forward</span>
+            <span class="material-icons" class="column-two">check_box_outline_blank</span>
+            <span class="task-size" class="column-three">${task.attributes.size}</span>
           </div>
-          <div class="task-name-column">
+          <div class="task-text-column">  
             <span class="task-text"> ${task.attributes.name}</span>
-          </div>
-          <div class="task-right-controls">
+          </div>  
+          <div class="right-column">
             <span class="material-icons">more_horiz</span>
             <span class="material-icons">redo</span>
             <span class="material-icons">delete_forever</span>

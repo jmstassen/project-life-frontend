@@ -29,49 +29,21 @@
     }
 
     .task-line {
+      display: grid;
+      grid-template-columns: 80px auto 88px;
       width: 100%;
-      grid-template-columns: 72px 1fr 72px;
     }
 
-    .task-line:after {
-      content: "";
-      display: table;
-      clear: both;
+    .left-column {
+      border: solid black 2px;
     }
 
-    .task-name-column {
-      float: left;
+    .task-text-column {
+      border: solid black 2px;
     }
 
-    .task-left-controls {
-      column-width: 72px;
-      float: left;
-
-    }
-      
-    .task-right-controls {
-      column-width: 72px;
-      float: left;
-    }
-
-    .lyrics-column input {
-      height: 100%;
-      width: 100%;
-      font-size: 28px;
-
-    }
-
-    .chords-column input {
-      height: 100%;
-      width: 100%;
-      font-size: 28px;
-    }
-
-    .lyrics-column p {
-      height: 100%;
-      width: 100%;
-      font-size: 28px;
-      line-height: 105%;
+    .right-column {
+      border: solid black 2px
     }
 
     .field_with_errors input {
@@ -79,31 +51,8 @@
       display: inline-block
     }
 
-    .chords-column p {
-      height: 100%;
-      width: 100%;
-      font-size: 28px;
-      line-height: 105%;
-    }
-  
-    .reference-textarea {
-      height: 100%;
-      width: 100%;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      resize: none;
-    }
-  
-    .note-textarea {
-      height: 100%;
-      width: 100%;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      resize: none;
-    }
-  
+
+
     .show-textarea {
       height: 100%;
       width: 100%;
@@ -147,14 +96,6 @@
       box-sizing: border-box;
     }
   
-    .lyrics-column, .chords-column {
-      border-right: 0px solid black;
-    }
-  
-    .left-column h3 {
-      text-align: center;
-    }
-  
     /*
     .right-column {
       display: grid;
@@ -174,7 +115,7 @@
       margin: 16px auto;
       max-width: 1100px;
       padding: 2.25%; /* 18px / 800px */
-      width: 85%;
+      width: 90%;
     }
   
     h1 {
@@ -189,9 +130,9 @@
       line-height: 26.4px;
     }
   
-    .project-header {
+    /* .project-header {
       margin: auto;
-    }
+    } */
 
     h2 {
       font-family: Cutive Mono;font-size: 36px;
@@ -207,7 +148,7 @@
 
     .task-text {
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 24px;
+      font-size: 16px;
       font-style: normal;
       font-variant: normal;
       font-weight: normal;
