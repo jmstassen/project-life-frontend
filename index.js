@@ -14,9 +14,9 @@ function getTasks() {
       const taskMarkup = `
         <div data-id=${task.id} class="task-line">  
           <div class="left-column">  
-            <span class="material-icons" class="column-one">arrow_forward</span>
-            <span class="material-icons" class="column-two">check_box_outline_blank</span>
-            <span class="task-size" class="column-three">${task.attributes.size}</span>
+            <span class="material-icons">arrow_forward</span>
+            <span class="material-icons">check_box_outline_blank</span>
+            <span class="task-size">${task.attributes.size}</span>
           </div>
           <div class="task-text-column">  
             <span class="task-text"> ${task.attributes.name}</span>

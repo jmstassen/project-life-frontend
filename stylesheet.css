@@ -30,12 +30,13 @@
 
     .task-line {
       display: grid;
-      grid-template-columns: 80px auto 88px;
+      grid-template-columns: 88px auto 88px;
       width: 100%;
     }
 
     .left-column {
       border: solid black 2px;
+      vertical-align: middle;
     }
 
     .task-text-column {
@@ -43,12 +44,23 @@
     }
 
     .right-column {
-      border: solid black 2px
+      border: solid black 2px;
     }
+
+    .task-size {
+      vertical-align: top;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: normal;
+      line-height: 24px;
+    }
+
 
     .field_with_errors input {
       border: solid red 1px;
-      display: inline-block
+      display: inline-block;
     }
 
 
