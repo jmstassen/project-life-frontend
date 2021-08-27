@@ -1,3 +1,7 @@
+const app = new App()
+
+
+
 const endPoint = "http://localhost:3000/api/v1/tasks"
 
 document.addEventListener('DOMContentLoaded', () => {
