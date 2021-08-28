@@ -21,7 +21,7 @@
       line-height: 18px;
     }
   
-    .projects-container {
+    #projects-container {
       border: solid black 0px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;

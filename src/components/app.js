@@ -1,5 +1,5 @@
 class App {
-    constructor() {
-        this.projects = new Projects()
-    }
+  constructor() {
+    this.projects = new Projects()
+  }
 }
