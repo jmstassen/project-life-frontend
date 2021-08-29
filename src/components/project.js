@@ -43,6 +43,7 @@ class Project {
         `
         let projectTaskContainer = document.getElementById(`task-container-${task.data.attributes.project_id}`)
         projectTaskContainer.insertAdjacentHTML("beforeend", taskMarkup)})
+    document.querySelector(`#input-name-${this.id}`).value = ""
   }
 
   render() {
