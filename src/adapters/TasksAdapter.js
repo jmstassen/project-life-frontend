@@ -17,5 +17,10 @@ class TasksAdapter {
           })
         })
         .then(response => response.json())
+        .then(task => {
+            console.log(task)
+            const newTask = new Task(task)
+            console.log(newTask)
+        })
     }
 }
