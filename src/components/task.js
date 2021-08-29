@@ -4,6 +4,7 @@ class Task {
     this.name = taskJSON.name
     this.status = taskJSON.status
     this.size = taskJSON.size
+    this.adapter = new TasksAdapter()
   }
 
   render() {

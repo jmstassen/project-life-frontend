@@ -2,8 +2,12 @@ class Projects {
   constructor() {
       this.projects = []
       this.adapter = new ProjectsAdapter()
-      // this.bindEventListeners()
+      this.initBindingsAndEventListeners()
       this.fetchAndLoadProjects()
+  }
+
+  initBindingsAndEventListeners() {
+      this.projectsContainer = document.getElementById('projects-container')
   }
 
   fetchAndLoadProjects() {
@@ -18,11 +22,11 @@ class Projects {
   }
 
   render() {
-    const projectsContainer = document.getElementById('projects-container')
     console.log(this.projects)
     this.projects.forEach(project => {
-        const projectMarkup = project.render()
-        projectsContainer.innerHTML += projectMarkup
+      let projectMarkup = project.render()
+      this.projectsContainer.insertAdjacentHTML("beforeend", projectMarkup)
+      project.initBindingsAndEventListeners()
     })
 
 

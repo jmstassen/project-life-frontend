@@ -5,6 +5,25 @@ class Project {
     this.tasks = projectJSON.attributes.tasks.map(task => new Task(task))
   }
 
+  initBindingsAndEventListeners() {
+    this.taskContainer = document.getElementById(`task-container-${this.id}`)
+    this.taskForm = document.getElementById(`create-task-form-${this.id}`)
+    console.log(this.taskForm)
+    this.taskForm.addEventListener("submit", (e) => this.createTask(e))
+  }
+
+  createTask(e) {
+    e.preventDefault()
+    console.log('task is being created')
+    const nameInput = document.querySelector('#input-name').value
+    const date = new Date().toISOString().slice(0, 10)
+    const status = "active"
+    const projectId = `${this.id}`
+    const size = "0"
+    this.adapter = new TasksAdapter()
+    this.adapter.postFetch(nameInput, projectId, status, date, size)
+  }
+
   render() {
     console.log(this.title)
     let projectMarkup =
@@ -13,7 +32,7 @@ class Project {
         <div class="project-header">
           <h2>${this.title}</h2>
         </div>
-        <div id="task-container">
+        <div id="task-container-${this.id}">
       `  
     const projectTaskMarkup = this.tasks.forEach(task => {
         let taskMarkup = task.render()
@@ -23,7 +42,7 @@ class Project {
       `
       </div>
         <div id="form-container">
-          <form class="create-task-form" data-id="${this.id}">
+          <form id="create-task-form-${this.id}">
             <input id='input-name' type="text" name="name" value="" class="input-text"> 
             <input id='create-button' type="submit" name="submit" value="create task" class="submit">
           </form>
