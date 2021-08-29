@@ -7,9 +7,20 @@ class Project {
 
   initBindingsAndEventListeners() {
     this.taskContainer = document.getElementById(`task-container-${this.id}`)
+    this.taskLines = document.querySelectorAll(".task-line")
+    console.log(this.taskLines)
+    this.taskLines.forEach(function(element) {
+      element.addEventListener("mouseover", function() {
+          console.log(this)
+      })
+    })
     this.taskForm = document.getElementById(`create-task-form-${this.id}`)
     console.log(this.taskForm)
     this.taskForm.addEventListener("submit", (e) => this.createTask(e))
+  }
+
+  handleMouseOver(e) {
+      console.log("handling")
   }
 
   createTask(e) {
