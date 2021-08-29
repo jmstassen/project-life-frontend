@@ -15,7 +15,7 @@ class Project {
   createTask(e) {
     e.preventDefault()
     console.log('task is being created')
-    const nameInput = document.querySelector('#input-name').value
+    const nameInput = document.querySelector(`#input-name-${this.id}`).value
     const date = new Date().toISOString().slice(0, 10)
     const status = "active"
     const projectId = `${this.id}`
@@ -43,7 +43,7 @@ class Project {
       </div>
         <div id="form-container">
           <form id="create-task-form-${this.id}">
-            <input id='input-name' type="text" name="name" value="" class="input-text"> 
+            <input id='input-name-${this.id}' type="text" name="name" value="" class="input-text"> 
             <input id='create-button' type="submit" name="submit" value="create task" class="submit">
           </form>
         </div>
