@@ -4,7 +4,7 @@ class TasksAdapter {
       'http://localhost:3000/api/v1/tasks'
     }
   
-    postFetch(name, project_id, status, date, size) {
+    createTask(name, project_id, status, date, size) {
         fetch(this.baseUrl, {
           method: "POST",
           headers: {"Content-Type": "application/json", "Accept": "application/json"},

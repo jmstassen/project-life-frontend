@@ -21,7 +21,7 @@ class Project {
     const projectId = `${this.id}`
     const size = "0"
     this.adapter = new TasksAdapter()
-    this.adapter.postFetch(nameInput, projectId, status, date, size)
+    this.adapter.createTask(nameInput, projectId, status, date, size)
   }
 
   render() {
