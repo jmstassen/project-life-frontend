@@ -34,7 +34,8 @@ class Project {
         </div>
         <div id="task-container-${this.id}">
       `  
-    const projectTaskMarkup = this.tasks.forEach(task => {
+    // const projectTaskMarkup = 
+    this.tasks.forEach(task => {
         let taskMarkup = task.render()
         projectMarkup += taskMarkup
     })
