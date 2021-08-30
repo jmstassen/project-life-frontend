@@ -36,7 +36,6 @@
       visibility: visible;
     }
 
-
     .task-line {
       display: grid;
       grid-template-columns: 88px auto 88px;
