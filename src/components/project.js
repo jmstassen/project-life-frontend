@@ -56,56 +56,21 @@ class Project {
     this.adapter.createTask(nameInput, projectId, status, date, size)
       .then(task => {
         console.log(task)
-        let taskMarkup = `
-        <div id="task-line-${task.data.id}" class="task-line">  
-          <div class="left-column">  
-            <img class="do-now hidden" id="do-now-${task.data.id}" src="img/sharp_arrow_forward_black_24dp.png">
-            <img id="check-box-${task.data.id}" src="img/sharp_check_box_outline_blank_black_24dp.png">
-            <span class="task-size">${task.data.attributes.size}</span>
-          </div>
-          <div class="task-text-column">  
-            <span class="task-text"> ${task.data.attributes.name}</span>
-          </div>  
-          <div class="right-column">
-            <img class="waiting hidden" id="waiting-${task.data.id}" src="img/sharp_pending_black_24dp.png">
-            <img class="tomorrow hidden" id="tomorrow-${task.data.id}" src="img/sharp_snooze_black_24dp.png">
-            <img class="delete hidden" id="delete-${task.data.id}" src="img/sharp_delete_forever_black_24dp.png">
-          </div>
-        </div>
-        `
+        let newTaskBody = JSON.parse(JSON.stringify(
+          {
+            id: task.data.id,
+            name: task.data.attributes.name,
+            status: task.data.attributes.status,
+            size: task.data.attributes.size
+          }
+        ))
+        console.log(newTaskBody)
+        let newTask = new Task(newTaskBody)
+        console.log(newTask)
+        let rendering = newTask.render()
         let projectTaskContainer = document.getElementById(`task-container-${task.data.attributes.project_id}`)
-        projectTaskContainer.insertAdjacentHTML("beforeend", taskMarkup)
-        let taskLine = document.getElementById(`task-line-${this.id}`)
-        taskLine.addEventListener("mouseenter", function() {
-            let doNow = this.querySelector(".do-now");
-            doNow.classList.remove("hidden");
-            doNow.classList.add("visible");
-            let waiting = this.querySelector(".waiting");
-            waiting.classList.remove("hidden");
-            waiting.classList.add("visible");
-            let tomorrow = this.querySelector(".tomorrow");
-            tomorrow.classList.remove("hidden");
-            tomorrow.classList.add("visible");
-            let deleteBtn = this.querySelector(".delete");
-            deleteBtn.classList.remove("hidden");
-            deleteBtn.classList.add("visible");
+        projectTaskContainer.insertAdjacentHTML("beforeend", rendering)
           })
-          taskLine.addEventListener("mouseleave", function() {
-            let doNow2 = this.querySelector(".do-now");
-            doNow2.classList.add("hidden");
-            doNow2.classList.remove("visible");
-            let waiting2 = this.querySelector(".waiting");
-            waiting2.classList.add("hidden");
-            waiting2.classList.remove("visible");
-            let tomorrow2 = this.querySelector(".tomorrow");
-            tomorrow2.classList.add("hidden");
-            tomorrow2.classList.remove("visible");
-            let deleteBtn2 = this.querySelector(".delete");
-            deleteBtn2.classList.add("hidden");
-            deleteBtn2.classList.remove("visible");
-          })
-      
-      })
     document.querySelector(`#input-name-${this.id}`).value = ""
   }
 
