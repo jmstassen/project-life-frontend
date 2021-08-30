@@ -10,19 +10,19 @@ class Task {
   render() {
     let taskMarkup = 
       `
-      <div data-id=${this.id} class="task-line">  
+      <div id="task-line-${this.id}" class="task-line">  
         <div class="left-column">  
-          <span class="material-icons">arrow_forward</span>
-          <span class="material-icons">check_box_outline_blank</span>
+          <img class="do-now hidden" id="do-now-${this.id}" src="img/sharp_arrow_forward_black_24dp.png">
+          <img src="img/sharp_check_box_outline_blank_black_24dp.png">
           <span class="task-size">${this.size}</span>
         </div>
         <div class="task-text-column">  
           <span class="task-text"> ${this.name}</span>
         </div>  
         <div class="right-column">
-          <span class="material-icons">more_horiz</span>
-          <span class="material-icons">redo</span>
-          <span class="material-icons">delete_forever</span>
+          <img class="waiting hidden" id="waiting-${this.id}" src="img/sharp_pending_black_24dp.png">
+          <img class="tomorrow hidden" id="tomorrow-${this.id}" src="img/sharp_snooze_black_24dp.png">
+          <img class="delete hidden" id="delete-${this.id}" src="img/sharp_delete_forever_black_24dp.png">
         </div>
       </div>
       `

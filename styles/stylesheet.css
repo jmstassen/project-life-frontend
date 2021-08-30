@@ -20,13 +20,22 @@
       /* font-family: Sans-Serif; */
       line-height: 18px;
     }
-  
+
     #projects-container {
       border: solid black 0px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       column-gap: 5px;
     }
+
+    .do-now-hidden, .waiting-hidden, .tomorrow-hidden, .delete-hidden, .hidden {
+      visibility: hidden;
+    }
+
+    .visible {
+      visibility: visible;
+    }
+
 
     .task-line {
       display: grid;
