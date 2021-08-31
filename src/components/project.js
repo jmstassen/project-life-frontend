@@ -49,9 +49,62 @@ class Project {
       } else if (target.classList.contains("check-box")) {
         console.log("check-box clicked")
       } else if (target.classList.contains("task-size")) {
+        e.stopPropagation()
+        let oldSize = target.innerHTML
+        let zeroSelected = ""
+        let oneSelected = ""
+        let twoSelected = ""
+        let threeSelected = ""
+        let fiveSelected = ""
+        let eightSelected = ""
+        let thirteenSelected = ""
+        if (oldSize === "0") {
+          zeroSelected = "selected"
+        } else if (oldSize === "1") {
+          oneSelected = "selected"
+        } else if (oldSize === "2") {
+          twoSelected = "selected"
+        } else if (oldSize === "3") {
+          threeSelected = "selected"
+        } else if (oldSize === "5") {
+          fiveSelected = "selected"
+        } else if (oldSize === "8") {
+          eightSelected = "selected"
+        } else if (oldSize === "13") {
+          thirteenSelected = "selected"
+        }
         console.log("task-size clicked")
+        console.log(target.innerHTML)
+        target.innerHTML = 
+        `
+        <select id="new-size" >
+          <option value="0" ${zeroSelected}>0</option>
+          <option value="1" ${oneSelected}>1</option>
+          <option value="2" ${twoSelected}>2</option>
+          <option value="3" ${threeSelected}>3</option>
+          <option value="5" ${fiveSelected}>5</option>
+          <option value="8" ${eightSelected}>8</option>
+          <option value="13" ${thirteenSelected}>13</option>
+        </select>
+        `
+        // target.contentEditable = "true"
+        // target.focus()
+        // target.addEventListener('keypress', function (e) {
+        //   if (e.key === 'Enter') {
+        //     console.log("task size enter")
+        //     target.contentEditable = "false"
+        //   }
+        // })
       } else if (target.classList.contains("task-text")) {
         console.log("task-text clicked")
+        target.contentEditable = "true"
+        target.focus()
+        target.addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') {
+            console.log("task name enter")
+            target.contentEditable = "false"
+          }
+        })
       } else if (target.classList.contains("waiting")) {
         console.log("waiting clicked")
       } else if (target.classList.contains("tomorrow")) {
