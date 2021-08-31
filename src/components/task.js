@@ -8,7 +8,6 @@ class Task {
   }
 
   render() {
-    console.log(this)
     if (this.status === "waiting") {
       this.waitingClass = "waiting visible"
       this.doNowClass = "do-now hidden"

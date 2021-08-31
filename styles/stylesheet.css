@@ -21,6 +21,16 @@
       line-height: 18px;
     }
 
+    .size-drop-down {
+      vertical-align: top;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 12px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: normal;
+      line-height: 24px;
+    }
+
     #projects-container {
       border: solid black 0px;
       display: grid;
