@@ -41,20 +41,22 @@ class Project {
     }, true);
 
     this.taskContainer.addEventListener("click", function(e) {
-      console.log(e.target)
-      if (e.target.classList.contains("do-now")) {
+      let target = e.target
+      
+      console.log(target)
+      if (target.classList.contains("do-now")) {
         console.log("do-now clicked")
-      } else if (e.target.classList.contains("check-box")) {
+      } else if (target.classList.contains("check-box")) {
         console.log("check-box clicked")
-      } else if (e.target.classList.contains("task-size")) {
+      } else if (target.classList.contains("task-size")) {
         console.log("task-size clicked")
-      } else if (e.target.classList.contains("task-text")) {
+      } else if (target.classList.contains("task-text")) {
         console.log("task-text clicked")
-      } else if (e.target.classList.contains("waiting")) {
+      } else if (target.classList.contains("waiting")) {
         console.log("waiting clicked")
-      } else if (e.target.classList.contains("tomorrow")) {
+      } else if (target.classList.contains("tomorrow")) {
         console.log("tomorrow clicked")
-      } else if (e.target.classList.contains("delete")) {
+      } else if (target.classList.contains("delete")) {
         console.log("delete clicked")
       }
     }, true);
