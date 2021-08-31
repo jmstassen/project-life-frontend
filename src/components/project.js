@@ -6,43 +6,79 @@ class Project {
   }
 
   initBindingsAndEventListeners() {
-    this.taskContainer = document.getElementById(`task-container-${this.id}`)
-    this.taskLines = document.querySelectorAll(".task-line")
-    console.log(this.taskLines)
-    this.taskLines.forEach(function(element) {
-      element.addEventListener("mouseenter", function() {
-          let doNow = this.querySelector(".do-now");
-          doNow.classList.remove("hidden");
-          doNow.classList.add("visible");
-          let waiting = this.querySelector(".waiting");
-          waiting.classList.remove("hidden");
-          waiting.classList.add("visible");
-          let tomorrow = this.querySelector(".tomorrow");
-          tomorrow.classList.remove("hidden");
-          tomorrow.classList.add("visible");
-          let deleteBtn = this.querySelector(".delete");
-          deleteBtn.classList.remove("hidden");
-          deleteBtn.classList.add("visible");
-        })
-      element.addEventListener("mouseleave", function() {
-        let doNow2 = this.querySelector(".do-now");
-        doNow2.classList.add("hidden");
-        doNow2.classList.remove("visible");
-        let waiting2 = this.querySelector(".waiting");
-        waiting2.classList.add("hidden");
-        waiting2.classList.remove("visible");
-        let tomorrow2 = this.querySelector(".tomorrow");
-        tomorrow2.classList.add("hidden");
-        tomorrow2.classList.remove("visible");
-        let deleteBtn2 = this.querySelector(".delete");
-        deleteBtn2.classList.add("hidden");
-        deleteBtn2.classList.remove("visible");
-      })
-    })
     this.taskForm = document.getElementById(`create-task-form-${this.id}`)
-    console.log(this.taskForm)
     this.taskForm.addEventListener("submit", (e) => this.createTask(e))
+    
+    this.taskContainer = document.getElementById(`task-container-${this.id}`)
+    this.taskContainer.addEventListener("mouseenter", function(e) {
+      console.log(e)
+      if (e.target.className === "task-line") {
+        console.log(this)
+        let doNow = e.target.querySelector(".do-now");
+        doNow.classList.replace("hidden", "mouseover-visible");
+        let waiting = e.target.querySelector(".waiting");
+        waiting.classList.replace("hidden", "mouseover-visible");
+        let tomorrow = e.target.querySelector(".tomorrow");
+        tomorrow.classList.replace("hidden", "mouseover-visible");
+        let deleteBtn = e.target.querySelector(".delete");
+        deleteBtn.classList.replace("hidden", "mouseover-visible");
+      }
+    }, true);
+
+    this.taskContainer.addEventListener("mouseleave", function(e) {
+      console.log("mouseout")
+      if(e.target.className === "task-line") {
+        console.log(this)
+        let doNow = e.target.querySelector(".do-now");
+        doNow.classList.replace("mouseover-visible", "hidden");
+        let waiting = e.target.querySelector(".waiting");
+        waiting.classList.replace("mouseover-visible", "hidden");
+        let tomorrow = e.target.querySelector(".tomorrow");
+        tomorrow.classList.replace("mouseover-visible", "hidden");
+        let deleteBtn = e.target.querySelector(".delete");
+        deleteBtn.classList.replace("mouseover-visible", "hidden");
+      }
+    }, true);
   }
+
+  // initBindingsAndEventListeners() {
+  //   this.taskContainer = document.getElementById(`task-container-${this.id}`)
+  //   this.taskLines = document.querySelectorAll(".task-line")
+  //   console.log(this.taskLines)
+  //   this.taskLines.forEach(function(element) {
+  //     element.addEventListener("mouseenter", function() {
+  //         let doNow = this.querySelector(".do-now");
+  //         doNow.classList.remove("hidden");
+  //         doNow.classList.add("visible");
+  //         let waiting = this.querySelector(".waiting");
+  //         waiting.classList.remove("hidden");
+  //         waiting.classList.add("visible");
+  //         let tomorrow = this.querySelector(".tomorrow");
+  //         tomorrow.classList.remove("hidden");
+  //         tomorrow.classList.add("visible");
+  //         let deleteBtn = this.querySelector(".delete");
+  //         deleteBtn.classList.remove("hidden");
+  //         deleteBtn.classList.add("visible");
+  //       })
+  //     element.addEventListener("mouseleave", function() {
+  //       let doNow2 = this.querySelector(".do-now");
+  //       doNow2.classList.add("hidden");
+  //       doNow2.classList.remove("visible");
+  //       let waiting2 = this.querySelector(".waiting");
+  //       waiting2.classList.add("hidden");
+  //       waiting2.classList.remove("visible");
+  //       let tomorrow2 = this.querySelector(".tomorrow");
+  //       tomorrow2.classList.add("hidden");
+  //       tomorrow2.classList.remove("visible");
+  //       let deleteBtn2 = this.querySelector(".delete");
+  //       deleteBtn2.classList.add("hidden");
+  //       deleteBtn2.classList.remove("visible");
+  //     })
+  //   })
+  //   this.taskForm = document.getElementById(`create-task-form-${this.id}`)
+  //   console.log(this.taskForm)
+  //   this.taskForm.addEventListener("submit", (e) => this.createTask(e))
+  // }
 
   createTask(e) {
     e.preventDefault()
