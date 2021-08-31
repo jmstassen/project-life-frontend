@@ -39,8 +39,26 @@ class Project {
         deleteBtn.classList.replace("mouseover-visible", "hidden");
       }
     }, true);
-  }
 
+    this.taskContainer.addEventListener("click", function(e) {
+      console.log(e.target)
+      if (e.target.classList.contains("do-now")) {
+        console.log("do-now clicked")
+      } else if (e.target.classList.contains("check-box")) {
+        console.log("check-box clicked")
+      } else if (e.target.classList.contains("task-size")) {
+        console.log("task-size clicked")
+      } else if (e.target.classList.contains("task-text")) {
+        console.log("task-text clicked")
+      } else if (e.target.classList.contains("waiting")) {
+        console.log("waiting clicked")
+      } else if (e.target.classList.contains("tomorrow")) {
+        console.log("tomorrow clicked")
+      } else if (e.target.classList.contains("delete")) {
+        console.log("delete clicked")
+      }
+    }, true);
+  }
   // initBindingsAndEventListeners() {
   //   this.taskContainer = document.getElementById(`task-container-${this.id}`)
   //   this.taskLines = document.querySelectorAll(".task-line")

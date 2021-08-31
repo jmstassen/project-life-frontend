@@ -32,7 +32,7 @@ class Task {
       <div id="task-line-${this.id}" class="task-line">  
         <div class="left-column">  
           <img class="${this.doNowClass}" id="do-now-${this.id}" src="img/sharp_arrow_forward_black_24dp.png">
-          <img class="check box" src="${this.checkBoxSrc}">
+          <img class="check-box" src="${this.checkBoxSrc}">
           <span class="task-size">${this.size}</span>
         </div>
         <div class="task-text-column">  
