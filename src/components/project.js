@@ -3,6 +3,7 @@ class Project {
     this.id = projectJSON.id
     this.title = projectJSON.attributes.title
     this.tasks = projectJSON.attributes.tasks.map(task => new Task(task))
+    this.adapter = new TasksAdapter()
   }
 
   initBindingsAndEventListeners() {
@@ -12,23 +13,28 @@ class Project {
     this.taskForm.addEventListener("submit", (e) => this.createTask(e))
     this.taskContainer.addEventListener("mouseenter", this.handleTaskLineMouseEnter.bind(this), true);
     this.taskContainer.addEventListener("mouseleave", this.handleTaskLineMouseLeave.bind(this), true);
-    this.taskContainer.addEventListener("click", this.handleTaskContainerClick.bind(this), true);
+    this.taskContainer.addEventListener("click", this.handleTaskLineClick.bind(this), true);
+    this.taskContainer.addEventListener("change", this.handleTaskSizeChange.bind(this))
+    this.taskContainer.addEventListener("keypress", this.handleTaskNameEnter.bind(this))
+    this.taskContainer.addEventListener("focusout", this.handleTaskNameFocusOut.bind(this))
   }
 
-  handleTaskContainerClick(e) {
+  handleTaskLineClick(e) {
     let target = e.target
-    console.log(target)
     if (target.classList.contains("do-now")) {
       console.log("do-now clicked")
       let task_id_array = target.id.split("-")
       let task_id = task_id_array[task_id_array.length - 1]
       console.log(task_id)
+      console.log(this)
       // UPDATE STATUS HERE
     } else if (target.classList.contains("check-box")) {
       console.log("check-box clicked")
+      console.log(this)
       // UPDATE STATUS HERE
     } else if (target.classList.contains("task-size")) {
       e.stopPropagation()
+      console.log(this)
       target.style.cssFloat = "right"
       let oldSize = target.innerHTML
       let zeroSelected = ""
@@ -54,7 +60,6 @@ class Project {
         thirteenSelected = "selected"
       }
       console.log("task-size clicked")
-      console.log(target.innerHTML)
       target.innerHTML = 
       `
       <select id="new-size" >
@@ -67,37 +72,63 @@ class Project {
         <option value="13" ${thirteenSelected}>13</option>
       </select>
       `
-      target.addEventListener('change', function (e) {
-        console.log("task size change")  
-        // UPDATE TASK SIZE HERE
-        }
-      )
+      // target.addEventListener('change', function (e) {
+      //   console.log("task size change")
+      //   console.log(this)  
+      //   // UPDATE TASK SIZE HERE
+      //   }
+      // )
     } else if (target.classList.contains("task-text")) {
       console.log("task-text clicked")
+      console.log(this)
       target.contentEditable = "true"
       target.focus()
-      target.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-          console.log("task name enter")
-          target.contentEditable = "false"
-        }
-      })
-      target.addEventListener('blur', function (e) {
-          console.log("task name focus out")
-          target.contentEditable = "false"
-          // UPDATE TASK NAME HERE
-      })
+      // target.addEventListener('keypress', function (e) {
+      //   if (e.key === 'Enter') {
+      //     console.log("task name enter")
+      //     target.contentEditable = "false"
+      //   }
+      // })
+      // target.addEventListener('blur', function (e) {
+      //     console.log("task name focus out")
+      //     console.log(this)
+      //     target.contentEditable = "false"
+      //     const newName = target.innerText
+      //     // this.adapter 
+      // })
     } else if (target.classList.contains("waiting")) {
       console.log("waiting clicked")
+      console.log(this)
       // UPDATE STATUS HERE
     } else if (target.classList.contains("tomorrow")) {
       console.log("tomorrow clicked")
+      console.log(this)
       // UPDATE DATE HERE
     } else if (target.classList.contains("delete")) {
       console.log("delete clicked")
+      console.log(this)
       // DELETE TASK HERE
     }
   };
+
+  handleTaskNameEnter(e) {
+    if (e.key === 'Enter') {
+      console.log("task name enter")
+      console.log(this)
+      e.target.contentEditable = "false"
+    }
+  }
+
+  handleTaskNameFocusOut(e) {
+    console.log("task name focus out")
+    console.log(this)
+    e.target.contentEditable = "false"
+  }
+
+  handleTaskSizeChange(e) {
+    console.log("size changed")
+    console.log(this)
+  }
 
   handleTaskLineMouseEnter(e) {
     if (e.target.className === "task-line") {
@@ -132,7 +163,6 @@ class Project {
     const status = "active"
     const projectId = `${this.id}`
     const size = "0"
-    this.adapter = new TasksAdapter()
     this.adapter.createTask(nameInput, projectId, status, date, size)
       .then(task => {
         let newTaskBody = (

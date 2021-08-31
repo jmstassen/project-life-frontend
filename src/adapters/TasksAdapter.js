@@ -18,4 +18,15 @@ class TasksAdapter {
         })
         .then(res => res.json())
     }
+
+    updateTaskName(name, id) {
+      return fetch(`${this.baseUrl}/id`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({
+          name: name,
+        })
+      })
+      .then(res => res.json())
+    }
 }
