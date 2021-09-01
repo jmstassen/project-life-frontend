@@ -22,16 +22,49 @@ class Project {
   handleTaskLineClick(e) {
     let target = e.target
     if (target.classList.contains("do-now")) {
+      let newStatus = "do now"
       console.log("do-now clicked")
-      let task_id_array = target.id.split("-")
-      let task_id = task_id_array[task_id_array.length - 1]
-      console.log(task_id)
-      console.log(this)
-      // UPDATE STATUS HERE
-    } else if (target.classList.contains("check-box")) {
-      console.log("check-box clicked")
-      console.log(this)
-      // UPDATE STATUS HERE
+      const taskId = target.parentNode.parentNode.dataset.id
+      console.log(taskId)
+      this.adapter.updateTaskStatus(newStatus, taskId)
+      target.classList.remove("hidden")
+      target.classList.add("visible")
+      let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
+      waitingSibling.classList.remove("visible")
+      waitingSibling.classList.add("hidden")
+      let checkBoxSibling = target.parentNode.querySelector(".check-box-done")
+      checkBoxSibling.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
+    } else if (target.classList.contains("check-box-empty")) {
+      let newStatus = "done"
+      console.log("check box clicked")
+      const taskId = target.parentNode.parentNode.dataset.id
+      console.log(taskId)
+      this.adapter.updateTaskStatus(newStatus, taskId)
+      target.src="./img/sharp_check_box_black_24dp.png"
+      let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
+      waitingSibling.classList.remove("visible")
+      waitingSibling.classList.add("hidden")
+      let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
+      doNowSibling.classList.remove("visible")
+      doNowSibling.classList.add("hidden")
+      target.classList.remove("check-box-empty")
+      target.classList.add("check-box-done")
+    } else if (target.classList.contains("check-box-done")) {
+      let newStatus = "active"
+      console.log("check box clicked")
+      const taskId = target.parentNode.parentNode.dataset.id
+      console.log(taskId)
+      this.adapter.updateTaskStatus(newStatus, taskId)
+      target.src="./img/sharp_check_box_outline_blank_black_24dp.png"
+      let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
+      waitingSibling.classList.remove("visible")
+      waitingSibling.classList.add("hidden")
+      let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
+      doNowSibling.classList.remove("visible")
+      doNowSibling.classList.add("hidden")
+      target.classList.remove("check-box-done")
+      target.classList.add("check-box-empty")
+      // UPDATE DISPLAY HERE
     } else if (target.classList.contains("task-size")) {
       e.stopPropagation()
       console.log(this)
@@ -72,42 +105,43 @@ class Project {
         <option value="13" ${thirteenSelected}>13</option>
       </select>
       `
-      // target.addEventListener('change', function (e) {
-      //   console.log("task size change")
-      //   console.log(this)  
-      //   // UPDATE TASK SIZE HERE
-      //   }
-      // )
     } else if (target.classList.contains("task-text")) {
       console.log("task-text clicked")
       console.log(this)
       target.contentEditable = "true"
       target.focus()
-      // target.addEventListener('keypress', function (e) {
-      //   if (e.key === 'Enter') {
-      //     console.log("task name enter")
-      //     target.contentEditable = "false"
-      //   }
-      // })
-      // target.addEventListener('blur', function (e) {
-      //     console.log("task name focus out")
-      //     console.log(this)
-      //     target.contentEditable = "false"
-      //     const newName = target.innerText
-      //     // this.adapter 
-      // })
     } else if (target.classList.contains("waiting")) {
+      let newStatus = "waiting"
       console.log("waiting clicked")
-      console.log(this)
-      // UPDATE STATUS HERE
+      const taskId = target.parentNode.parentNode.dataset.id
+      console.log(taskId)
+      this.adapter.updateTaskStatus(newStatus, taskId)
+      target.classList.remove("hidden")
+      target.classList.add("visible")
+      let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
+      doNowSibling.classList.remove("visible")
+      doNowSibling.classList.add("hidden")
+      let checkBoxSibling = target.parentNode.parentNode.querySelector(".check-box-done")
+      checkBoxSibling.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
+      // UPDATE CHECK BOX
     } else if (target.classList.contains("tomorrow")) {
+      const today = new Date().toISOString().slice(0,10)
+      const tomorrow = new Date(today)
+      tomorrow.setDate(tomorrow.getDate() + 1)
+      let newDate = tomorrow.toISOString().slice(0,10)
       console.log("tomorrow clicked")
-      console.log(this)
-      // UPDATE DATE HERE
+      const taskId = target.parentNode.parentNode.dataset.id
+      console.log(taskId)
+      this.adapter.updateTaskDate(newDate, taskId)
+      target.parentNode.parentNode.remove()
     } else if (target.classList.contains("delete")) {
       console.log("delete clicked")
+      var result = confirm("Are you sure you want to delete this task?");
+      if (result==true) {
       console.log(this)
-      // DELETE TASK HERE
+      const taskId = target.parentNode.parentNode.dataset.id
+      this.adapter.deleteTask(taskId)}
+      target.parentNode.parentNode.remove()
     }
   };
 
@@ -120,14 +154,23 @@ class Project {
   }
 
   handleTaskNameFocusOut(e) {
+    if (e.target.classList.contains("task-text")) {
     console.log("task name focus out")
     console.log(this)
     e.target.contentEditable = "false"
+    const newName = e.target.innerText
+    const taskId = e.target.parentNode.parentNode.dataset.id
+    console.log(taskId)
+    this.adapter.updateTaskName(newName, taskId)}
   }
 
   handleTaskSizeChange(e) {
     console.log("size changed")
     console.log(this)
+    const newSize = e.target[e.target.selectedIndex].value
+    console.log(newSize)
+    const taskId = e.target.parentNode.parentNode.parentNode.dataset.id
+    this.adapter.updateTaskSize(newSize, taskId)
   }
 
   handleTaskLineMouseEnter(e) {
