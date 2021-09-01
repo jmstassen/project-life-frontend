@@ -234,8 +234,12 @@ class Project {
         <div id="task-container-${this.id}">
       `  
     this.tasks.forEach(task => {
+      console.log(task)  
+      if (new Date(task.date) <= new Date())
+        {
         let taskMarkup = task.render()
         projectMarkup += taskMarkup
+      }
     })
     const projectNewTaskFormMarkup =  
       `
