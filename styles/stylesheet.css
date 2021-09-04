@@ -15,20 +15,21 @@
     /* --- Welcome Page Styles --- */
     body {
       font-family: Verdana, Geneva, sans-serif;
-      background-color: rgb(238, 106, 0);
+      background-color: #171796;
       color: rgb(3, 3, 3);
       /* font-family: Sans-Serif; */
       line-height: 18px;
     }
 
-    .size-drop-down {
+    .new-size {
       vertical-align: top;
       font-family: Verdana, Geneva, sans-serif;
-      font-size: 12px;
+      font-size: 16px;
       font-style: normal;
       font-variant: normal;
       font-weight: normal;
       line-height: 24px;
+      width: auto;
     }
 
     #projects-container {
@@ -52,21 +53,26 @@
 
     .task-line {
       display: grid;
-      grid-template-columns: 88px auto 88px;
+      grid-template-columns: 100px auto 88px;
       width: 100%;
     }
 
     .left-column {
-      border: solid black 2px;
+      border: solid black 0px;
       vertical-align: middle;
     }
 
     .task-text-column {
-      border: solid black 2px;
+      border: solid black 0px;
     }
 
     .right-column {
-      border: solid black 2px;
+      border: solid black 0px;
+    }
+
+    .form-container {
+      width: 100%;
+      text-align: center;
     }
 
     .task-size {
@@ -256,8 +262,8 @@
     }
   
   
-  @media screen and (max-width: 900px) {
-    .projects-container {
+  @media screen and (max-width: 1150px) {
+    #projects-container {
       -moz-box-shadow: none;
       -webkit-box-shadow: none;
       box-shadow: none;
@@ -281,12 +287,12 @@
       line-height: 36px;
     }
   
-    h2 {
+    /* h2 {
       font-size: 18px;
       line-height: 24px;
-    }
+    } */
   
-    .projects-container {
+    #projects-container {
       border: solid black 0px;
       /*display: block;*/
       grid-template-columns: 1fr 1fr;
@@ -302,12 +308,15 @@
     }
   }
   
-  @media screen and (max-width: 450px) {
-    .wrapper {
+  @media screen and (max-width: 900px) {
+    #projects-container {
       -moz-box-shadow: none;
       -webkit-box-shadow: none;
       box-shadow: none;
       width: auto;
+      border: solid black 0px;
+      /*display: block;*/
+      grid-template-columns: 1fr;
     }
   
     .content, .sidebar {
@@ -327,10 +336,10 @@
       line-height: 36px;
     }
   
-    h2 {
+    /* h2 {
       font-size: 18px;
       line-height: 24px;
-    }
+    } */
   
     .task-wrapper {
       border: solid black 2px;
