@@ -27,6 +27,15 @@ class Projects {
       this.projectsContainer.insertAdjacentHTML("beforeend", projectMarkup)
       project.initBindingsAndEventListeners()
     })
+    let newProjectCard = `
+    <div class="project-card new-project">
+      <div class="project-header">
+        <h2>add project</h2>
+      </div>
+    </div>
+    `
+    
+    this.projectsContainer.insertAdjacentHTML("beforeend", newProjectCard)
 
   }
 
