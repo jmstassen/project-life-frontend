@@ -125,13 +125,16 @@ class Projects {
       project.initBindingsAndEventListeners()
     })
     let newProjectCard = `
-    <div class="project-card new-project" style="height: 40px">
+    <div class="project-card new-project" id="add-project" style="height: 40px">
       <div>
         <h2 style="display:inline;" class="new-project-title">add project</h2>
       </div>
     </div>
     `
     this.projectsContainer.insertAdjacentHTML("beforeend", newProjectCard)
+    document.getElementById("add-project").style.cursor = "pointer";
+    this.projectsContainer.style.cursor = "pointer";
+
   }
 
 
