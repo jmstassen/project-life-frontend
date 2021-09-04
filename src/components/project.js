@@ -256,7 +256,8 @@ class Project {
             id: task.data.id,
             name: task.data.attributes.name,
             status: task.data.attributes.status,
-            size: task.data.attributes.size
+            size: task.data.attributes.size,
+            projectId: task.data.attributes.project_id
             }
           )
           let newTask = new Task(newTaskBody)
@@ -271,9 +272,9 @@ class Project {
   render() {
     let projectMarkup =
       `
-      <div class="project-card">
-        <div class="project-header">
-          <h2>${this.title}</h2>
+      <div class="project-card" data-id="${this.id}">
+        <div class="project-header" style="margin:auto;">
+          <span><h2 style="display:inline;" class="project-title">${this.title}</h2><img style="float: right" class="delete-project hidden" id="delete-${this.id}" src="img/sharp_delete_forever_black_24dp.png"></span>
         </div>
         <div id="task-container-${this.id}">
       `  
@@ -291,8 +292,8 @@ class Project {
         <div class="form-container">
         <br>  
         <form id="create-task-form-${this.id}">
-            <input id='input-name-${this.id}' type="text" name="name" value="" class="input-text" autocomplete="off"> 
-            <input id='create-button' type="submit" name="submit" value="add" class="submit">
+            <input id='input-name-${this.id}' type="text" name="name" class="input-text" autocomplete="off"> 
+            <input id='create-button' type="submit" name="submit" value="add task" class="submit">
           </form>
         </div>
       </div>      
