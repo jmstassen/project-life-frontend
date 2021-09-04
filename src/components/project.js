@@ -14,59 +14,110 @@ class Project {
     this.taskContainer.addEventListener("mouseenter", this.handleTaskLineMouseEnter.bind(this), true);
     this.taskContainer.addEventListener("mouseleave", this.handleTaskLineMouseLeave.bind(this), true);
     this.taskContainer.addEventListener("click", this.handleTaskLineClick.bind(this), true);
-    this.taskContainer.addEventListener("change", this.handleTaskSizeChange.bind(this))
+    this.taskContainer.addEventListener("input", this.handleTaskSizeChange.bind(this))
     this.taskContainer.addEventListener("keypress", this.handleTaskNameEnter.bind(this))
     this.taskContainer.addEventListener("focusout", this.handleTaskNameFocusOut.bind(this))
   }
 
   handleTaskLineClick(e) {
     let target = e.target
+    console.log(target)
     if (target.classList.contains("do-now")) {
-      let newStatus = "do now"
-      console.log("do-now clicked")
-      const taskId = target.parentNode.parentNode.dataset.id
-      console.log(taskId)
-      this.adapter.updateTaskStatus(newStatus, taskId)
-      target.classList.remove("hidden")
-      target.classList.add("visible")
-      let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
-      waitingSibling.classList.remove("visible")
-      waitingSibling.classList.add("hidden")
-      let checkBoxSibling = target.parentNode.querySelector(".check-box-done")
-      checkBoxSibling.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
-    } else if (target.classList.contains("check-box-empty")) {
-      let newStatus = "done"
+      console.log("do now clicked")
+      if (target.classList.contains("visible")) {
+        console.log("visible do now clicked")
+        let newStatus = "active"
+        const taskId = target.parentNode.parentNode.dataset.id
+        this.adapter.updateTaskStatus(newStatus, taskId)
+        let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
+        let checkBoxSibling = target.parentNode.querySelector(".check-box")
+        checkBoxSibling.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
+        waitingSibling.classList.add("hidden")
+        waitingSibling.classList.remove("visible")
+        checkBoxSibling.classList.add("empty")
+        checkBoxSibling.classList.remove("done")
+        target.classList.add("hidden")
+        target.classList.remove("visible")
+      } else {
+        console.log("hidden do now clicked")
+        let newStatus = "do now"
+        const taskId = target.parentNode.parentNode.dataset.id
+        this.adapter.updateTaskStatus(newStatus, taskId)
+        let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
+        let checkBoxSibling = target.parentNode.querySelector(".check-box")
+        checkBoxSibling.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
+        waitingSibling.classList.add("hidden")
+        waitingSibling.classList.remove("visible")
+        checkBoxSibling.classList.add("empty")
+        checkBoxSibling.classList.remove("done")
+        target.classList.add("visible")
+        target.classList.remove("hidden")
+      }
+    } else if (target.classList.contains("check-box")) {
       console.log("check box clicked")
-      const taskId = target.parentNode.parentNode.dataset.id
-      console.log(taskId)
-      this.adapter.updateTaskStatus(newStatus, taskId)
-      target.src="./img/sharp_check_box_black_24dp.png"
-      let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
-      waitingSibling.classList.remove("visible")
-      waitingSibling.classList.add("hidden")
-      let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
-      doNowSibling.classList.remove("visible")
-      doNowSibling.classList.add("hidden")
-      target.classList.remove("check-box-empty")
-      target.classList.add("check-box-done")
-    } else if (target.classList.contains("check-box-done")) {
-      let newStatus = "active"
-      console.log("check box clicked")
-      const taskId = target.parentNode.parentNode.dataset.id
-      console.log(taskId)
-      this.adapter.updateTaskStatus(newStatus, taskId)
-      target.src="./img/sharp_check_box_outline_blank_black_24dp.png"
-      let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
-      waitingSibling.classList.remove("visible")
-      waitingSibling.classList.add("hidden")
-      let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
-      doNowSibling.classList.remove("visible")
-      doNowSibling.classList.add("hidden")
-      target.classList.remove("check-box-done")
-      target.classList.add("check-box-empty")
-      // UPDATE DISPLAY HERE
+      if (target.classList.contains("empty")) {
+        console.log("empty check box clicked")
+        let newStatus = "done"
+        const taskId = target.parentNode.parentNode.dataset.id
+        this.adapter.updateTaskStatus(newStatus, taskId)
+        let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
+        let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
+        target.src="./img/sharp_check_box_black_24dp.png"
+        target.classList.add("done")
+        target.classList.remove("empty")
+        waitingSibling.classList.add("hidden")
+        waitingSibling.classList.remove("visible")
+        doNowSibling.classList.add("hidden")
+        doNowSibling.classList.remove("visible")
+      } else {
+        console.log("done check box clicked")
+        let newStatus = "active"
+        const taskId = target.parentNode.parentNode.dataset.id
+        this.adapter.updateTaskStatus(newStatus, taskId)
+        let waitingSibling = target.parentNode.parentNode.querySelector(".waiting")
+        let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
+        target.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
+        target.classList.add("empty")
+        target.classList.remove("done")
+        waitingSibling.classList.add("hidden")
+        waitingSibling.classList.remove("visible")
+        doNowSibling.classList.add("hidden")
+        doNowSibling.classList.remove("visible")
+      }
+    } else if (target.classList.contains("waiting")) {
+      console.log("waiting clicked")
+      if (target.classList.contains("visible")) {
+        console.log("visible waiting clicked")
+        let newStatus = "active"
+        const taskId = target.parentNode.parentNode.dataset.id
+        this.adapter.updateTaskStatus(newStatus, taskId)
+        let checkBoxSibling = target.parentNode.parentNode.querySelector(".check-box")
+        console.log(checkBoxSibling)
+        let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
+        checkBoxSibling.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
+        checkBoxSibling.classList.add("empty")
+        checkBoxSibling.classList.remove("done")
+        doNowSibling.classList.add("hidden")
+        doNowSibling.classList.remove("visible")
+        target.classList.add("hidden")
+        target.classList.remove("visible")
+      } else {
+        console.log("hidden waiting clicked")
+        let newStatus = "waiting"
+        const taskId = target.parentNode.parentNode.dataset.id
+        this.adapter.updateTaskStatus(newStatus, taskId)
+        let checkBoxSibling = target.parentNode.parentNode.querySelector(".check-box")
+        console.log(checkBoxSibling)
+        let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
+        checkBoxSibling.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
+        checkBoxSibling.classList.add("empty")
+        checkBoxSibling.classList.remove("done")
+        doNowSibling.classList.add("hidden")
+        doNowSibling.classList.remove("visible")
+        target.classList.add("visible")
+        target.classList.remove("hidden")
+      }
     } else if (target.classList.contains("task-size")) {
-      e.stopPropagation()
       console.log(this)
       target.style.cssFloat = "right"
       let oldSize = target.innerHTML
@@ -95,7 +146,7 @@ class Project {
       console.log("task-size clicked")
       target.innerHTML = 
       `
-      <select id="new-size" >
+      <select class="new-size" >
         <option value="0" ${zeroSelected}>0</option>
         <option value="1" ${oneSelected}>1</option>
         <option value="2" ${twoSelected}>2</option>
@@ -110,20 +161,6 @@ class Project {
       console.log(this)
       target.contentEditable = "true"
       target.focus()
-    } else if (target.classList.contains("waiting")) {
-      let newStatus = "waiting"
-      console.log("waiting clicked")
-      const taskId = target.parentNode.parentNode.dataset.id
-      console.log(taskId)
-      this.adapter.updateTaskStatus(newStatus, taskId)
-      target.classList.remove("hidden")
-      target.classList.add("visible")
-      let doNowSibling = target.parentNode.parentNode.querySelector(".do-now")
-      doNowSibling.classList.remove("visible")
-      doNowSibling.classList.add("hidden")
-      let checkBoxSibling = target.parentNode.parentNode.querySelector(".check-box-done")
-      checkBoxSibling.src = "./img/sharp_check_box_outline_blank_black_24dp.png"
-      // UPDATE CHECK BOX
     } else if (target.classList.contains("tomorrow")) {
       const today = new Date().toISOString().slice(0,10)
       const tomorrow = new Date(today)
@@ -167,10 +204,15 @@ class Project {
   handleTaskSizeChange(e) {
     console.log("size changed")
     console.log(this)
+    let element = e.target.parentNode
+    console.log(element)
+    element.style.cssFloat = "none"
     const newSize = e.target[e.target.selectedIndex].value
     console.log(newSize)
     const taskId = e.target.parentNode.parentNode.parentNode.dataset.id
     this.adapter.updateTaskSize(newSize, taskId)
+    // UPDATE DISPLAY HERE
+    e.target.parentNode.innerHTML = `${newSize}`
   }
 
   handleTaskLineMouseEnter(e) {
@@ -202,26 +244,28 @@ class Project {
   createTask(e) {
     e.preventDefault()
     const nameInput = document.querySelector(`#input-name-${this.id}`).value
-    const date = new Date().toISOString().slice(0, 10)
-    const status = "active"
-    const projectId = `${this.id}`
-    const size = "0"
-    this.adapter.createTask(nameInput, projectId, status, date, size)
-      .then(task => {
-        let newTaskBody = (
-          {
+    if (nameInput !== "") { 
+      const date = new Date().toISOString().slice(0, 10)
+      const status = "active"
+      const projectId = `${this.id}`
+      const size = "0"
+      this.adapter.createTask(nameInput, projectId, status, date, size)
+        .then(task => {
+          let newTaskBody = (
+            {
             id: task.data.id,
             name: task.data.attributes.name,
             status: task.data.attributes.status,
             size: task.data.attributes.size
-          }
-        )
-        let newTask = new Task(newTaskBody)
-        let rendering = newTask.render()
-        let projectTaskContainer = document.getElementById(`task-container-${task.data.attributes.project_id}`)
-        projectTaskContainer.insertAdjacentHTML("beforeend", rendering)
+            }
+          )
+          let newTask = new Task(newTaskBody)
+          let rendering = newTask.render()
+          let projectTaskContainer = document.getElementById(`task-container-${task.data.attributes.project_id}`)
+          projectTaskContainer.insertAdjacentHTML("beforeend", rendering)
           })
     document.querySelector(`#input-name-${this.id}`).value = ""
+        }
   }
 
   render() {
@@ -244,10 +288,11 @@ class Project {
     const projectNewTaskFormMarkup =  
       `
       </div>
-        <div id="form-container">
-          <form id="create-task-form-${this.id}">
-            <input id='input-name-${this.id}' type="text" name="name" value="" class="input-text"> 
-            <input id='create-button' type="submit" name="submit" value="create task" class="submit">
+        <div class="form-container">
+        <br>  
+        <form id="create-task-form-${this.id}">
+            <input id='input-name-${this.id}' type="text" name="name" value="" class="input-text" autocomplete="off"> 
+            <input id='create-button' type="submit" name="submit" value="add" class="submit">
           </form>
         </div>
       </div>      
