@@ -278,7 +278,7 @@ class Project {
         </div>
         <div id="task-container-${this.id}">
       `  
-    this.tasks.forEach(task => {
+    this.tasks.sort((a, b) => b.size - a.size).forEach(task => {
       console.log(task)  
       if (new Date(task.date) <= new Date())
         {
