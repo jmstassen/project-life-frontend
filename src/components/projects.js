@@ -133,7 +133,6 @@ class Projects {
     `
     this.projectsContainer.insertAdjacentHTML("beforeend", newProjectCard)
     document.getElementById("add-project").style.cursor = "pointer";
-    this.projectsContainer.style.cursor = "pointer";
 
   }
 
