@@ -43,6 +43,11 @@
       visibility: hidden;
     }
 
+    .do-now, .check-box, .task-size, .task-text, .waiting, .tomorrow, .delete, .project-title, .delete-project, .submit {
+      cursor: pointer;
+
+    }
+
     .visible {
       visibility: visible;
     }
