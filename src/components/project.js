@@ -119,6 +119,7 @@ class Project {
       }
     } else if (target.classList.contains("task-size")) {
       console.log(this)
+      target.focus()
       target.style.cssFloat = "right"
       let oldSize = target.innerHTML
       let zeroSelected = ""
@@ -211,7 +212,6 @@ class Project {
     console.log(newSize)
     const taskId = e.target.parentNode.parentNode.parentNode.dataset.id
     this.adapter.updateTaskSize(newSize, taskId)
-    // UPDATE DISPLAY HERE
     e.target.parentNode.innerHTML = `${newSize}`
   }
 
