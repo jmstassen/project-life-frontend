@@ -11,7 +11,8 @@ git clone the backend repo to your local folder
 git clone the frontend repo to the same local folder (so your local folder will contain 2 folders, 1 for front end, 1 for backend)
 
 in backend folder:
- 1. $ rails db:migrate
+ 1. $ rails db:create
+ 2. $ rails db:migrate
  2. $ rails s
 
 in frontend folder:
